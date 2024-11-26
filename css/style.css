@@ -1,0 +1,192 @@
+*, *::before, *::after {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+img {
+    max-width: 100%
+}
+
+body{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #043540;
+}
+
+/* Flyout Menu - Inactive */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.hamburger-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.menu-text {
+    color: white;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.hamburger, .hamburger::before, .hamburger::after {
+    content: '';
+    display: block;
+    background: white;
+    height: 3px;
+    width: 25px;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+.hamburger::before {
+    transform: translateY(-7px);
+}
+
+.hamburger::after {
+    transform: translateY(4px);
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #061D26;
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-top: 25px;
+}
+
+.nav li {
+    margin: 20px 0;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: block;
+    padding: 10px 20px;
+    transition: background 0.3s;
+}
+
+.nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+    padding: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Flyout Navigation Menu (active) */
+.menu-toggle.active .hamburger {
+    background: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    background: white;
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    background: white;
+}
+
+.nav.active {
+    left: 0;
+}
+
+.content.active {
+    transform: translateX(300px);
+}
+
+/* Main Content */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    color: white;
+    font-weight: 100;
+    font-size: 70px;
+    letter-spacing: 20px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+h2 {
+    color: white;
+    font-weight: 100;
+    font-size: 25px;
+    letter-spacing: 15px;
+    margin: 0;
+}
+
+footer {
+    color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+
+@media screen and (max-width: 570px) {
+    h1 {
+        font-size: calc(70px * 0.4);
+        white-space: wrap;
+        text-align: center;
+    }
+    h2 {
+        font-size: calc(25px * 0.4);
+        white-space: wrap;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: calc(70px * 0.6);
+    }
+    h2 {
+        font-size: calc(25px * 0.6);
+    }
+}
+
