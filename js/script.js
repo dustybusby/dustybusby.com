@@ -2,6 +2,17 @@ let currentImageIndex = 0;
 let isFullscreen = false;
 let fullscreenData = null;
 
+// Add menu toggle initialization at the start
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+});
+
 function updateActiveImage() {
     const images = document.querySelectorAll('.image-container img');
     const description = document.getElementById('image-description');
@@ -83,37 +94,56 @@ function toggleFullScreen(image) {
             closeButton = document.createElement('button');
             closeButton.className = 'fullscreen-close';
             closeButton.textContent = 'X';
-            closeButton.onclick = () => toggleFullScreen(image);
+            closeButton.setAttribute('aria-label', 'Close fullscreen view');
+            closeButton.tabIndex = 0;
             body.appendChild(closeButton);
+            
+            // Use addEventListener instead of onclick
+            closeButton.addEventListener('click', () => toggleFullScreen(image));
+            closeButton.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    toggleFullScreen(image);
+                    e.preventDefault();
+                }
+            });
         }
     }
 }
 
 // Initialize lightbox
-updateActiveImage();
+document.addEventListener('DOMContentLoaded', function() {
+    // Only run if we're on the page with the lightbox
+    if (document.querySelector('.lightbox')) {
+        updateActiveImage();
 
-// Add event listeners for arrows
-document.querySelector('.arrow.left').addEventListener('click', prevImage);
-document.querySelector('.arrow.right').addEventListener('click', nextImage);
+        // Add event listeners for arrows
+        document.querySelector('.arrow.left').addEventListener('click', prevImage);
+        document.querySelector('.arrow.right').addEventListener('click', nextImage);
 
-// Add keyboard support for arrows
-document.querySelector('.arrow.left').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-        prevImage();
-        e.preventDefault();
+        // Add keyboard support for arrows
+        document.querySelector('.arrow.left').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                prevImage();
+                e.preventDefault();
+            }
+        });
+
+        document.querySelector('.arrow.right').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                nextImage();
+                e.preventDefault();
+            }
+        });
+
+        // Add fullscreen click handlers
+        document.querySelectorAll('.image-container img').forEach(img => {
+            img.addEventListener('click', () => toggleFullScreen(img));
+            img.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    toggleFullScreen(img);
+                    e.preventDefault();
+                }
+            });
+        });
     }
-});
-
-document.querySelector('.arrow.right').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-        nextImage();
-        e.preventDefault();
-    }
-});
-
-// Flyout Menu Toggle
-document.querySelector('.menu-toggle').addEventListener('click', function () {
-    document.querySelector('.nav').classList.toggle('active');
-    document.querySelector('.menu-toggle').classList.toggle('active');
-    document.querySelector('.content')?.classList.toggle('active');
 });
