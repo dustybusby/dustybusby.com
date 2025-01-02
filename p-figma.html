@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Figma-To-Dev</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button class="menu-toggle">
+        <span class="hamburger-container">
+            <span class="hamburger"></span>
+        </span>
+        <span class="menu-text">MENU</span>
+    </button>
+
+    <header>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="p-figma.html">Project: Figma-To-Dev</a></li>
+                <li><a href="p2.html">Project Sample 2</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="pfigma-title">The Handoff</h1>
+        <h2 class="pfigma-description" id="image-description">Description for the first image.</h2>
+        <div class="lightbox">
+            <button class="arrow left" onclick="prevImage()">
+                <div class="arrow-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="image-container">
+                <img src="img/Figma-Project.png" alt="Figma Project Image 1" class="active" data-description="Figma-to-Dev: Initial design" onclick="toggleFullScreen(this)">
+                <img src="img/placeholder2.jpg" alt="Placeholder 2" data-description="Placeholder 2: Conceptual model" onclick="toggleFullScreen(this)">
+                <img src="img/placeholder3.jpg" alt="Placeholder 3" data-description="Placeholder 3: User interface ideas" onclick="toggleFullScreen(this)">
+                <img src="img/placeholder4.jpg" alt="Placeholder 4" data-description="Placeholder 4: Final deliverable" onclick="toggleFullScreen(this)">
+            </div>
+            <div class="lightbox-text">
+                <div class="text-content active" data-index="0">
+                    The overall goal of this project was to practice a real-world scenario of a web designer handing off a Figma prototype to a developer to translate into code and build a web site.
+                </div>
+                <div class="text-content" data-index="1">
+                    The conceptual model phase involved analyzing the design system, component hierarchy, and planning the implementation strategy.
+                </div>
+                <div class="text-content" data-index="2">
+                    Exploring various user interface ideas and interactions to ensure the best possible user experience while maintaining design fidelity.
+                </div>
+                <div class="text-content" data-index="3">
+                    The final deliverable showcases a pixel-perfect implementation of the original Figma design, complete with responsive behavior and interactive elements.
+                </div>
+            </div>
+            <div class="lightbox-instruction">Click image to enlarge</div>
+            <button class="arrow right" onclick="nextImage()">
+                <div class="arrow-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
