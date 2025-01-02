@@ -331,6 +331,7 @@ footer {
     position: relative;
     width: 20px;
     height: 20px;
+    display: block;
 }
 
 .arrow.left .arrow-indicator {
@@ -353,6 +354,7 @@ footer {
     border-right: 3px solid #fff;
     opacity: 0;
     animation: arrowAnimate 1.5s linear infinite;
+    display: block;
 }
 
 .arrow-indicator span:nth-child(1) {
