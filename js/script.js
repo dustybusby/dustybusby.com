@@ -92,6 +92,25 @@ function toggleFullScreen(image) {
 // Initialize lightbox
 updateActiveImage();
 
+// Add event listeners for arrows
+document.querySelector('.arrow.left').addEventListener('click', prevImage);
+document.querySelector('.arrow.right').addEventListener('click', nextImage);
+
+// Add keyboard support for arrows
+document.querySelector('.arrow.left').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        prevImage();
+        e.preventDefault();
+    }
+});
+
+document.querySelector('.arrow.right').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        nextImage();
+        e.preventDefault();
+    }
+});
+
 // Flyout Menu Toggle
 document.querySelector('.menu-toggle').addEventListener('click', function () {
     document.querySelector('.nav').classList.toggle('active');
