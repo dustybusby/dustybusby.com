@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: The Handoff</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button class="menu-toggle">
+        <span class="hamburger-container">
+            <span class="hamburger"></span>
+        </span>
+        <span class="menu-text">MENU</span>
+    </button>
+
+    <header>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="thehandoff.html">Project: The Handoff</a></li>
+                <li><a href="p2.html">Project Sample 2</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <h1 class="pfigma-title">The Handoff</h1>
+        <h2 class="pfigma-description" id="image-description">Description for the first image.</h2>
+        <div class="lightbox">
+            <button class="arrow left" tabindex="0" aria-label="Previous image">
+                <span class="arrow-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="image-container">
+                <img src="img/gu-overview.png" alt="Project Overview" class="active" data-description="Hey Web Developer, here's my creation. Go forth and conquer!" tabindex="0" data-fullscreen="true">
+                <img src="img/gu-original-file.png" alt="Original Figma File" data-description="Ready, set, go...where to start?" tabindex="0" data-fullscreen="true">
+                <img src="img/gu-skeleton.jpg" alt="Skeleton HTML Structure" data-description="The Details: Step 1 - Overall Structure" tabindex="0" data-fullscreen="true">
+                <img src="img/gu-diff.jpg" alt="Mobile vs Desktop Differences" data-description="The Details: Step 2 - Mobile vs Desktop Differences" tabindex="0" data-fullscreen="true">
+                <img src="img/gu-variables.jpg" alt="Variable List" data-description="The Details: Step 3 - Design Variables" tabindex="0" data-fullscreen="true">
+                <img src="img/gu-spacing.jpg" alt="Spacing & Alignment" data-description="The Details: Step 4 - Spacing & Alignment" tabindex="0" data-fullscreen="true">
+                <img src="img/gu-export.jpg" alt="Media Assets" data-description="The Details: Step 5 - Media Assets" tabindex="0" data-fullscreen="true">
+                <img src="img/gu-code.jpg" alt="Final Code" data-description="The Result" tabindex="0" data-fullscreen="true">
+            </div>
+            <div class="lightbox-text">
+                <div class="text-content active" data-index="0">
+                    The Handoff is a project showcasing the process of translating a web design created in Figma into a fully functional website. In this project, a Web Designer crafts the design in Figma, and I take on the role of the Web Developer to build the website from scratch.
+                    <br><br>
+                    What does this demonstrate about my skills?
+                    <ul>
+                        <li>Proficiency in understanding and working with Figma.</li>
+                        <li>The ability to code websites from the ground up using HTML and CSS.</li>
+                        <li>A solid grasp of effective collaboration between a Web Designer and a Web Developer.</li>
+                        <li>The ability to create a responsive and flexible layout that adapts to different screen sizes.</li>
+                        <li>A detail-oriented approach to creating a pixel-perfect implementation of an original Figma design.</li>
+                    </ul>
+                </div>
+                <div class="text-content" data-index="1">
+                    When transitioning a Figma design into a "mobile-first" web project, clarity and preparation are key. While responsive and flexible layouts are the ultimate goals, understanding the design’s intent and its nuances sets the foundation for success. Here’s how I approach this task systematically, starting with sketching and notations to uncover hidden design details.
+                    <br>
+                    <ul>
+                        <li><b>Step 1: Break Down the Overall Structure</b></li>
+                            <ul>
+                            <li>Analyze the layout hierarchy: Identify headings, sections, overlays, and navigational elements.</li>
+                            <li>Sketch a rough wireframe: Visualize key structural elements for both mobile and desktop views.</li>
+                            </ul>
+                        <li><b>Step 2: Analyze Mobile-to-Desktop Differences</b></li>
+                            <ul>
+                            <li>Review Figma layers for mobile-specific details like text wrapping, alignment, and stacking order.</li>
+                            <li>Note flexbox or grid adjustments needed for desktop (e.g., row-to-column transformations).</li>
+                            </ul>
+                        <li><b>Step 3: Extract Design Variables</b></li>
+                            <ul>
+                            <li>Collect all fonts, colors, gradients, and text sizes.</li>
+                            <li>Organize these into a CSS variables for consistency.</li>
+                            </ul>
+                        <li><b>Step 4: Fine-Tune Spacing and Alignment</b></li>
+                            <ul>
+                            <li>Note margins, padding, and element spacing.</li>
+                            <li>Include notes on text box width, alignment, and responsive spacing rules.</li>
+                            </ul>
+                        <li><b>Step 5: Prepare Media Assets</b></li>
+                            <ul>
+                            <li>Export images, icons, and logos with appropriate naming conventions and formats.</li>
+                            </ul>
+                    </ul>
+                </div>
+                <div class="text-content" data-index="2">
+                    <p>
+                        <b style="color: #ADFF2F;">Body</b>
+                        <br>
+                        <b style="color: #ADFF2F;">Header:</b> logo (top left), navigation (top right), background image with a gradient (top to bottom) and text (h1)
+                        <br><br>
+                        For this structure, I used this Emmet shorthand to create it:
+                        <br><br>
+                        <b style="color: #FFD700;">header>nav>a+ul>li*3^div>h1</b>
+                        <br><br>
+                        <b style="color: #ADFF2F;">Main:</b> there are three distinct sections, two of which I'll definitely use a flexbox to organize
+                        <ul>
+                            <li>Title: text (h2), location (h1), an icon and hours (h2)</li>
+                            <li>Sections: Three images, sub-title (h2, left justified) and text (p, left justified). First and Third text box to the right, the second is to the left.</li>
+                            <li>Separator: an icon</li>
+                            <li>Menu Images: With a gradient (bottom to top) and text (h2)</li>
+                        </ul>
+                        Emmet shorthand:
+                        <br>
+                        <b style="color: #FFD700;">main>div.title>div#title-text1>h2^h1+img[src]+div#title-text2>h2^^div.container>section>img[src]+div.section-text>h2+p^^section>img[src]+div.section-text>h2+p^^section>img[src]+div.section-text>h2+p^img[src]^^div.menu-img>div.menu-item.drink-menu>h2.menu-text^div.menu-item.food-menu>h2.menu-text</b>
+                        <br><br>
+                        <b style="color: #ADFF2F;">Footer:</b> there is also three distinct sections
+                        <ul>
+                            <li>Contact (h2): address, phone, email</li>
+                            <li>Social media icons/links</li>
+                            <li>Copyright</li>
+                        </ul>
+                        Emmet shorthand:
+                        <br>
+                        <b style="color: #FFD700;">footer>div.footer-content>div.contact-info>h2.address+h2.phone+h2.email^div.social-icons>a.icon-placeholder.facebook[title="Like us on Facebook" href="https://facebook.com"]+a.icon-placeholder.twitter[title="Follow us on X" href="https://x.com"]+a.icon-placeholder.instagram[title="Follow us on Instagram" href="https://instagram.com"]^p.copyright</b>
+                    </p>
+                </div>
+                <div class="text-content" data-index="3">
+                    <p>For the next step, notating the key differences between Mobile and Desktop views.</p>
+                    <p><b>Border</b>
+                        <ul>
+                            <li>Desktop: Sets the page with a color, then sets a page frame for everything to go on top of.</li>
+                            <li>Mobile: Uses the entire page edge-to-edge.</li>
+                        </ul>
+                    </p>
+                    <p><b>Navigation</b>
+                        <ul>
+                            <li>Desktop: Uses a horizontal navigation bar with left and right alignment.</li>
+                            <li>Mobile: Uses a vertical navigation bar.</li>
+                        </ul>
+                    </p>
+                    <p><b>Sections</b>
+                        <ul>
+                            <li>Desktop: Uses a horizontal layout that alternates between left and right alignment of the images-to-text.</li>
+                            <li>Mobile: Uses a vertical layout that is always image on top of text.</li>
+                        </ul>
+                    </p>
+                    <p><b>Footer</b>
+                        <ul>
+                            <li>Desktop: Uses a horizontal layout with phone listed first, then address.</li>
+                            <li>Mobile: Uses a vertical layout with address listed first, then phone.</li>
+                        </ul>
+                    </p>
+                    <p><b>Various Elements</b>
+                        <ul>
+                            <li>Spacing</li>
+                            <li>Image and text sizing</li>
+                            <li>Alignment</li>
+                            <li>Text wrapping</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="text-content" data-index="4">
+                    <p>This particular project did not provide a developer-centric Figma file, so there is no design system, no tokens, nor an asset library. Also, the free version of Figma was used with no plugins, so there was not a Dev Mode available or tools like Zeplin. Using manual visual inspection and exports, I derived all the variables into the CSS file for use.</p>
+                </div>
+                <div class="text-content" data-index="5">
+                    <p>All the element spacing, margins, padding, and text boxes were noted. For the responsive media queries, which were not defined, I took the liberty of setting the following:</p>
+                        <ul>
+                            <li>Default Mobile First Design (Based on a 360x800 device)</li>
+                            <li>992px</li>
+                            <li>1284px</li>
+                            <li>1920px</li>
+                        </ul>
+                    <p>Since the Figma file only contained a "Mobile" and "Desktop" design, I initially started out with the default (360px) and 1920px. However, after doing responsive testing, I added 992px and 1284px to the media queries to cover tablets as well.</p>
+                </div>
+                <div class="text-content" data-index="6">
+                    <p>For media assets, I exported as follows:</p>
+                    <ul>
+                        <li>Images: 2x jpg, low quality to keep the size reasonable.</li>
+                        <li>Icons/Logos: SVG</li>
+                    </ul>
+                </div>
+                <div class="text-content" data-index="7">
+                    <p>With all the "pre-work" done, it was time to start coding and inserting the content. In general, this design was not complicated and it did not involve the need for any JavaScript. Regardless, it was my very first web site I built from scratch. It's not perfect, but I let it stand as is to show the evolution of my coding capabilities.</p>
+                    <p>GitHub Repo: <a href="https://github.com/dustybusby/The-Handoff-Project" target="_blank">https://github.com/dustybusby/The-Handoff-Project</a></p>
+                    <p>Web Site: <a href="https://dustybusby.github.io/The-Handoff-Project/" target="_blank">https://dustybusby.github.io/The-Handoff-Project/</a></p>
+                </div>
+            </div>
+            <div class="lightbox-instruction">Click image to enlarge</div>
+
+            <button class="arrow right" tabindex="0" aria-label="Next image">
+                <span class="arrow-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+
+        <footer>
+            <p>Copyright 2025. Dusty Busby</p>
+        </footer>
+        
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
