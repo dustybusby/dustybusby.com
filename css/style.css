@@ -439,6 +439,30 @@ footer {
     display: block;
 }
 
+/* Add these color styles */
+.highlight-green {
+    color: #ADFF2F;
+}
+
+.highlight-gold {
+    color: #FFD700;
+}
+
+/* Add these styles to maintain spacing */
+.text-content p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.text-content ul {
+    margin-bottom: var(--spacing-sm);
+}
+
+.text-content br + br {
+    display: block;
+    content: "";
+    margin-top: var(--spacing-xs);
+}
+
 .pfigma-title {
     color: var(--color-text);
     font-family: inherit;
@@ -677,10 +701,6 @@ footer {
     .lightbox {
         max-width: 1400px;
     }
-}
-
-.text-content[data-index="2"] {
-    font-size: calc(var(--font-size-base) * 1);
 }
 
 /* Mobile-only styles */
