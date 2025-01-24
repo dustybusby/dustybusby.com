@@ -610,7 +610,209 @@ footer {
     padding: var(--spacing-xs);
 }
 
-/* Media Queries */
+/* Move these styles up, just before the media queries */
+.home-link {
+    color: var(--color-sun-1);
+    font-weight: var(--font-weight-thin);
+    font-size: var(--font-size-small);
+    letter-spacing: var(--letter-spacing-small);
+    margin-top: 1rem;
+    text-align: center;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity var(--transition-standard);
+}
+
+.home-link:hover {
+    opacity: 1;
+    color: var(--color-sun-2);
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+    .pfigma-title {
+        font-size: 1.5rem;
+        margin-top: calc(var(--spacing-lg) * 1.5);
+        position: relative;
+        z-index: 2;
+    }
+
+    .pfigma-description {
+        font-size: 0.9rem;
+        margin-top: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+        position: relative;
+        z-index: 2;
+    }
+
+    .lightbox {
+        position: absolute;  /* Changed from fixed */
+        height: 90vh;
+        max-height: 500px;
+        top: 75%;  /* Moved down */
+        transform: translate(-50%, -40%);
+        z-index: 1;
+        overflow-y: auto;
+    }
+
+    main {
+        min-height: 100vh;
+        position: relative;
+        overflow-y: auto;
+    }
+
+    .carousel {
+        flex: 0 0 auto;
+        height: 300px;
+        margin-bottom: var(--spacing-sm);
+        display: flex;
+        align-items: center;
+    }
+
+    .image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .image-container img {
+        max-height: 300px;
+        width: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+    }
+
+    .lightbox-text {
+        flex: 1 1 auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .arrow {
+        top: 30%;
+    }
+
+    .arrow.left {
+        left: 5px;
+    }
+
+    .arrow.right {
+        right: 5px;
+    }
+}
+
+/* iPhone 14 Pro specific styles */
+@media (min-width: 390px) and (max-width: 395px) and (min-height: 650px) and (max-height: 850px) {
+    .pfigma-title {
+        font-size: 1.5rem;
+        margin-top: calc(var(--spacing-lg) * 1.5);
+        position: relative;
+        z-index: 2;
+    }
+
+    .pfigma-description {
+        font-size: 0.9rem;
+        margin-top: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+        position: relative;
+        z-index: 2;
+    }
+
+    .lightbox {
+        position: absolute;
+        height: 90vh;
+        max-height: 500px;
+        top: 75%;
+        transform: translate(-50%, -40%);
+        z-index: 1;
+        overflow-y: auto;
+    }
+
+    main {
+        min-height: 100vh;
+        position: relative;
+        overflow-y: auto;
+    }
+
+    .carousel {
+        flex: 0 0 auto;
+        height: 300px;
+        margin-bottom: var(--spacing-sm);
+        display: flex;
+        align-items: center;
+    }
+
+    .image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .image-container img {
+        max-height: 300px;
+        width: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+    }
+
+    .lightbox-text {
+        flex: 1 1 auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .arrow {
+        top: 30%;
+    }
+
+    .arrow.left {
+        left: 5px;
+    }
+
+    .arrow.right {
+        right: 5px;
+    }
+}
+
+/* Laptop-specific styles */
+@media (min-width: 1280px) and (max-width: 1366px) and (max-height: 600px) {
+    .lightbox {
+        max-width: 900px !important;
+        height: 400px !important;
+        top: 50% !important;
+        transform: translate(-50%, -45%) !important;
+    }
+
+    .carousel {
+        width: 45% !important;
+        height: 90% !important;
+    }
+
+    .lightbox-text {
+        width: 55% !important;
+        max-height: 100% !important;
+    }
+
+    .pfigma-title {
+        font-size: 1.75rem !important;
+        margin-top: calc(var(--spacing-lg) * 0.5) !important;
+    }
+    
+    .pfigma-description {
+        font-size: 0.8rem !important;
+        margin-bottom: var(--spacing-md) !important;
+    }
+}
+
+/* Rest of media queries in ascending order */
 @media (min-width: 576px) {
     .lightbox {
         width: calc(100% - 10%);
@@ -817,6 +1019,7 @@ footer {
     
     .pfigma-description {
         font-size: 1.75rem;
+        margin-bottom: var(--spacing-lg);
     }
 
     .home-link {
@@ -864,88 +1067,29 @@ footer {
     }
 }
 
-/* Mobile-specific styles */
-@media (max-width: 767px) {
+@media (min-width: 2560px) {
     .lightbox {
-        height: 90vh;
-        max-height: 550px;
-        overflow-y: auto;
-        gap: 0;
-        display: flex;
-        flex-direction: column;
-        top: 54%;
-    }
-
-    @media (max-height: 700px) {
-        .lightbox {
-            top: 60%;
-            transform: translate(-50%, -42%);
-        }
-    }
-
-    @media (min-height: 701px) {
-        .lightbox {
-            transform: translate(-50%, -45%);
-        }
-    }
-
-    .carousel {
-        flex: 0 0 auto;
-        height: 300px;
-        margin-bottom: var(--spacing-sm);
-        display: flex;
-        align-items: center;
-    }
-
-    .image-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 300px;
-        margin: 0;
-        padding: 0;
-    }
-
-    .image-container img {
-        max-height: 300px;
-        width: auto;
-        object-fit: contain;
-        margin: 0;
-        padding: 0;
-    }
-
-    .lightbox-text {
-        flex: 1 1 auto;
-        margin: 0;
-        padding: 0;
-    }
-
-    .arrow {
-        top: 30%;
-    }
-
-    .arrow.left {
-        left: 5px;
-    }
-
-    .arrow.right {
-        right: 5px;
+        max-width: 1400px;
+        height: 785px;
     }
 }
 
-.home-link {
-    color: var(--color-sun-1);
-    font-weight: var(--font-weight-thin);
-    font-size: var(--font-size-small);
-    letter-spacing: var(--letter-spacing-small);
-    margin-top: 1rem;
-    text-align: center;
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity var(--transition-standard);
-}
+/* Move this to the very end */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .pfigma-title {
+        font-size: 2.25rem;
+        margin-top: calc(var(--spacing-lg) * 0.75);
+    }
+    
+    .pfigma-description {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-lg);
+    }
 
-.home-link:hover {
-    opacity: 1;
-    color: var(--color-sun-2);
+    .lightbox {
+        max-width: 1200px;
+        height: 700px;
+        top: 50%;
+        transform: translate(-50%, -45%);
+    }
 }
