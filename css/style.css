@@ -1,3 +1,6 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
 :root {
     /* Colors */
     --color-primary: #043540;      /* Main background */
@@ -7,10 +10,16 @@
     --color-sun-1: #FDB813;        /* Sun gradient start */
     --color-sun-2: #FF4500;        /* Sun gradient end */
     --color-overlay: rgba(0, 0, 0, 0.9);  /* Fullscreen background */
+    --color-highlight-green: #ADFF2F;
+    --color-highlight-gold: #FFD700;
+    --color-error: rgba(255, 0, 0, 0.8);
+    --color-shadow-sun: rgba(253, 184, 19, 0.5);
+    --color-shadow-sun-2: rgba(255, 69, 0, 0.2);
     
     /* Typography */
     --font-primary: "Montserrat", sans-serif;
     --font-weight-thin: 100;
+    --font-size-xs: 0.7rem;
     --font-size-small: 0.8rem;
     --font-size-base: 1rem;
     --font-size-medium: 1.2rem;
@@ -19,6 +28,8 @@
     --letter-spacing-small: 0.2rem;
     --letter-spacing-medium: 0.5rem;
     --letter-spacing-large: 1rem;
+    --line-height-base: 1.5;
+    --line-height-large: 1.6;
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -27,17 +38,31 @@
     --spacing-lg: 3rem;
     --spacing-xl: 4rem;
     
+    /* Add new spacing variables */
+    --spacing-xxs: 0.25rem;  /* For 0.2rem values */
+    --spacing-xxxl: 6rem;    /* For 6rem gaps */
+    --spacing-mega: 8rem;    /* For 8rem gaps */
+    --spacing-ultra: 10rem;  /* For 10rem margins */
+    
     /* Layout */
     --nav-width: 300px;
     --lightbox-width: 375px;
     --sun-size-mobile: 40vw;
-    --sun-size-desktop: 20vw;
+    --sun-size-desktop: 15vw;
+    --max-content-width: 1200px;  /* For about-container max-width */
+    --image-width-small: 150px;   /* For about-image width */
+    --image-height-small: 250px;  /* For about-image height */
+    --clip-path-angle: 5%;        /* For about-image clip-path */
+    --arrow-size: 20px;
+    --hamburger-height: 3px;
+    --hamburger-width: 25px;
     
     /* Effects */
     --transition-standard: 0.3s ease-in-out;
     --transition-quick: 0.2s ease-in-out;
     --shadow-standard: 0 0 10px rgba(255, 255, 255, 0.5);
     --shadow-large: 0px 20px 40px rgba(0, 0, 0, 0.6);
+    --shadow-text: 0 0 5px rgba(0, 0, 0, 0.5);
     
     /* Z-index layers */
     --z-base: 1000;
@@ -45,8 +70,58 @@
     --z-nav: calc(var(--z-base) + 1000);
     --z-menu-toggle: calc(var(--z-nav) + 1);
     --z-fullscreen: calc(var(--z-base) + 2000);
+    
+    /* Borders & Radius */
+    --border-radius-xs: 2px;
+    --border-radius-sm: 4px;      /* For buttons, small elements */
+    --border-radius-md: 10px;     /* For lightbox */
+    
+    /* Opacity */
+    --opacity-dim: 0.9;           /* For pfigma-description */
+    --opacity-dimmer: 0.8;        /* For home-link, home-tagline */
+    
+    /* Animation */
+    --arrow-offset: 10px;         /* For arrow animation translate */
+    --animation-duration: 1.5s;
+    
+    /* Grid */
+    --header-height: calc(var(--spacing-md) * 2.5);  /* For about-page header */
+    
+    /* Add new layout variables */
+    --lightbox-height-desktop: 785px;
+    --lightbox-width-desktop: 85%;
+    --lightbox-max-width-desktop: 1400px;
+    
+    /* Add new typography variables */
+    --font-size-h1: 3rem;
+    --font-size-h2: 1.75rem;
+    
+    /* In :root, add these new variables */
+    --font-size-subtitle: 1.5rem;  /* For pfigma-title */
+        
+    /* Spacing */
+    --spacing-negative: -1.8rem;   /* For home-subtitle margin-top */
+    --spacing-title: 3.5rem;       /* For pfigma-title margin-top */
+        
+    /* Layout */
+    --height-lightbox: calc(100vh - 18rem);  /* For lightbox height */
+    --height-min: 400px;           /* For lightbox min-height */
+    --height-max: 600px;           /* For lightbox max-height */
+    --width-percent: 95%;          /* For lightbox width */
+    --width-about-image: 250px;    /* For about-image width */
+    --height-about-image: 375px;   /* For about-image height */
+    --width-max-text: 800px;       /* For about-text max-width */
+    
+    /* Position */
+    --position-top: 14.5rem;       /* For lightbox top */
+    --position-arrow: 125px;       /* For arrow top */
+    --position-arrow-outside: -75px;  /* For desktop arrow left/right */
+    --position-arrow-mobile: 5px;   /* For mobile arrow left/right */
 }
 
+/* ==========================================================================
+   Base/Reset Styles
+   ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -69,7 +144,9 @@ body {
     background-color: var(--color-primary);
 }
 
-/* General Link Styles */
+/* ==========================================================================
+   Typography & Links
+   ========================================================================== */
 a {
     color: var(--color-sun-1);
     text-decoration: none;
@@ -80,6 +157,37 @@ a:hover {
     color: var(--color-sun-2);
 }
 
+/* Project Typography */
+.pfigma-title {
+    color: var(--color-text);
+    font-family: inherit;
+    font-weight: 400;
+    font-size: var(--font-size-subtitle);
+    text-align: center;
+    margin-top: var(--spacing-title);
+    padding: 0 var(--spacing-sm);
+    position: relative;
+    z-index: 2;
+}
+
+.pfigma-description {
+    color: var(--color-text);
+    font-family: inherit;
+    font-weight: 400;
+    font-size: var(--font-size-base);
+    text-align: center;
+    margin: var(--spacing-xs) 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0 var(--spacing-sm);
+    opacity: var(--opacity-dim);
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   Layout & Navigation
+   ========================================================================== */
 /* Navigation */
 .nav {
     position: fixed;
@@ -117,6 +225,16 @@ a:hover {
     color: var(--color-text);
 }
 
+/* Main Layout */
+main {
+    min-height: 100vh;
+    position: relative;
+    padding-top: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Menu Toggle */
 .menu-toggle {
     position: fixed;
@@ -148,9 +266,9 @@ a:hover {
     content: '';
     display: block;
     background: var(--color-text);
-    height: 3px;
-    width: 25px;
-    border-radius: 2px;
+    height: var(--hamburger-height);
+    width: var(--hamburger-width);
+    border-radius: var(--border-radius-xs);
     transition: var(--transition-quick);
 }
 
@@ -190,7 +308,39 @@ a:hover {
     transform: translateX(var(--nav-width));
 }
 
-/* Home Page Styles */
+/* Home Link */
+.home-link {
+    color: var(--color-sun-1);
+    font-weight: var(--font-weight-thin);
+    font-size: var(--font-size-small);
+    letter-spacing: var(--letter-spacing-small);
+    margin-top: var(--spacing-sm);
+    text-align: center;
+    text-decoration: none;
+    opacity: var(--opacity-dimmer);
+    transition: opacity var(--transition-standard);
+    font-weight: 400;
+}
+
+.home-link:hover {
+    opacity: 1;
+    color: var(--color-sun-2);
+}
+
+/* Footer */
+footer {
+    color: var(--color-text);
+    font-size: var(--font-size-small);
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: var(--spacing-xs);
+}
+
+/* ==========================================================================
+   Home Page
+   ========================================================================== */
 .container {
     display: flex;
     flex-direction: column;
@@ -206,22 +356,22 @@ a:hover {
 .home-title {
     color: var(--color-text);
     font-weight: var(--font-weight-thin);
-    font-size: var(--font-size-large);
-    letter-spacing: var(--letter-spacing-medium);
+    font-size: 1.75rem;
+    letter-spacing: var(--letter-spacing-small);
     margin: 0;
     text-align: center;
     white-space: nowrap;
-    transform: translateY(80px);
+    transform: translateY(60px);
 }
 
 .home-subtitle {
     color: var(--color-text);
     font-weight: var(--font-weight-thin);
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-small);
     letter-spacing: var(--letter-spacing-small);
     margin: 0;
     text-align: center;
-    margin-top: -2.5rem;
+    margin-top: var(--spacing-negative);
 }
 
 .home-tagline {
@@ -229,9 +379,9 @@ a:hover {
     font-weight: var(--font-weight-thin);
     font-size: var(--font-size-small);
     letter-spacing: var(--letter-spacing-small);
-    margin-top: 4rem;
+    margin-top: 3rem;
     text-align: center;
-    opacity: 0.8;
+    opacity: var(--opacity-dimmer);
 }
 
 /* Sun Effect */
@@ -239,100 +389,84 @@ a:hover {
     width: var(--sun-size-mobile);
     height: var(--sun-size-mobile);
     background: radial-gradient(circle at bottom, var(--color-sun-1), var(--color-sun-2), transparent 60%);
-    box-shadow: 0 0 50px 20px rgba(253, 184, 19, 0.5), 0 0 100px 50px rgba(255, 69, 0, 0.2);
+    box-shadow: 0 0 50px 20px var(--color-shadow-sun), 0 0 100px 50px var(--color-shadow-sun-2);
     border-radius: 50%;
     margin: -5vh 0 -2vh 0;
     z-index: -1;
 }
 
-/* Project Page Styles */
-.pfigma-title {
-    color: var(--color-text);
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 1.75rem;
-    text-align: center;
-    margin-top: calc(var(--spacing-lg) * 1.5);
-    padding: 0 1rem;
-}
-
-.pfigma-description {
-    color: var(--color-text);
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 1rem;
-    text-align: center;
-    margin: var(--spacing-xs) 0;
-    margin-bottom: var(--spacing-xl);
-    padding: 0 1rem;
-    opacity: 0.9;
-}
-
-/* Lightbox Styles */
+/* ==========================================================================
+   Project Pages (Shared)
+   ========================================================================== */
+/* Lightbox Component */
 .lightbox {
+    position: fixed;
+    top: var(--position-top);
+    left: 50%;
+    transform: translateX(-50%);
+    height: var(--height-lightbox);
+    max-height: var(--height-max);
+    min-height: var(--height-min);
+    width: var(--width-percent);
+    z-index: 1;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 50%;
-    bottom: auto;
-    left: 50%;
-    transform: translate(-50%, -40%);
     background-color: var(--color-accent);
     border-radius: 10px;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     box-shadow: var(--shadow-large);
-    width: calc(100% - 10%);
-    max-width: var(--lightbox-width);
-    height: 500px;
-    z-index: var(--z-lightbox);
+    margin-bottom: 1.5rem;
 }
 
 .carousel {
+    position: sticky;
+    top: 0;
+    flex: 0 0 auto;
+    height: 250px;
+    margin-bottom: var(--spacing-sm);
     display: flex;
     align-items: center;
-    justify-content: center;
+    background-color: var(--color-accent);
+    z-index: 2;
+    position: relative;
     width: 100%;
-    height: 60%;
-    padding-right: 0;
-    padding-bottom: var(--spacing-md);
+    padding-top: 1.5rem;
 }
 
 .image-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 85%;
-    position: relative;
+    justify-content: center;
+    height: 250px;
     margin: 0;
+    padding: 0;
+    position: relative;
+    margin-top: 0.5rem;
 }
 
 .image-container img {
+    max-height: 250px;
     width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    display: none;
-    border-radius: 5px;
-    box-shadow: var(--shadow-standard);
-    cursor: pointer;
     object-fit: contain;
-    position: relative;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    display: none;
+    cursor: pointer;
 }
 
 .image-container img.active {
     display: block;
 }
 
-/* Lightbox Text Box */
 .lightbox-text {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
+    flex: 1 1 auto;
+    margin: var(--spacing-sm) 0 0 0;
+    padding: 0 var(--spacing-xs);
     overflow-y: auto;
-    padding: 0 var(--spacing-sm);
     color: var(--color-text);
 }
 
@@ -354,7 +488,7 @@ a:hover {
     position: fixed;
     top: var(--spacing-xs);
     right: var(--spacing-xs);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, var(--opacity-dimmer));
     color: var(--color-text);
     border: none;
     font-size: var(--font-size-medium);
@@ -368,23 +502,27 @@ a:hover {
 }
 
 .fullscreen-close:hover {
-    background-color: rgba(255, 0, 0, 0.8);
+    background-color: var(--color-error);
 }
 
-/* Instructional Text */
+/* Instructional Text - Mobile First */
 .lightbox-instruction {
     position: absolute;
-    top: 0.625rem;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-xs);
     color: var(--color-text);
     font-family: var(--font-primary);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    text-shadow: var(--shadow-text);
     font-weight: bold;
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 0;
+    background-color: var(--color-overlay);
+    padding: 2px 8px;
+    border-radius: var(--border-radius-sm);
+    width: fit-content;
 }
 
 /* Arrows - Mobile First Base Styles */
@@ -395,22 +533,22 @@ a:hover {
     padding: var(--spacing-xs);
     z-index: calc(var(--z-lightbox) + 1);
     position: absolute;
-    top: 50%;
+    top: var(--position-arrow);
     transform: translateY(-50%);
 }
 
 .arrow.left {
-    left: -20px;
+    left: var(--position-arrow-mobile);
 }
 
 .arrow.right {
-    right: -20px;
+    right: var(--position-arrow-mobile);
 }
 
 .arrow-indicator {
     position: relative;
-    width: 20px;
-    height: 20px;
+    width: var(--arrow-size);
+    height: var(--arrow-size);
     display: block;
 }
 
@@ -430,10 +568,10 @@ a:hover {
     height: 100%;
     box-sizing: border-box;
     border: none;
-    border-bottom: 3px solid var(--color-text);
-    border-right: 3px solid var(--color-text);
+    border-bottom: var(--hamburger-height) solid var(--color-text);
+    border-right: var(--hamburger-height) solid var(--color-text);
     opacity: 0;
-    animation: arrowAnimate 1.5s linear infinite;
+    animation: arrowAnimate var(--animation-duration) linear infinite;
     display: block;
 }
 
@@ -442,7 +580,7 @@ a:hover {
 }
 
 .arrow-indicator span:nth-child(2) {
-    animation-delay: 0.2s;
+    animation-delay: var(--transition-quick);
 }
 
 .arrow-indicator span:nth-child(3) {
@@ -452,14 +590,14 @@ a:hover {
 @keyframes arrowAnimate {
     0% {
         opacity: 0;
-        transform: translate(-10px, -10px);
+        transform: translate(calc(-1 * var(--arrow-offset)), calc(-1 * var(--arrow-offset)));
     }
     50% {
         opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: translate(10px, 10px);
+        transform: translate(var(--arrow-offset), var(--arrow-offset));
     }
 }
 
@@ -476,11 +614,11 @@ a:hover {
 
 /* Add these color styles */
 .highlight-green {
-    color: #ADFF2F;
+    color: var(--color-highlight-green);
 }
 
 .highlight-gold {
-    color: #FFD700;
+    color: var(--color-highlight-gold);
 }
 
 /* Add these styles to maintain spacing */
@@ -498,598 +636,382 @@ a:hover {
     margin-top: var(--spacing-xs);
 }
 
-/* About Page Styles */
+.text-content .highlight-gold {
+    word-break: break-word;
+    white-space: normal;
+    display: inline;
+}
+
+/* ==========================================================================
+   About Page
+   ========================================================================== */
+.about-page::before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--spacing-md) * 2.5);
+    background-color: var(--color-primary);
+    z-index: calc(var(--z-menu-toggle) - 1);
+}
+
 .about-container {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 0 1rem 3rem;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-md);
-    margin-top: calc(var(--spacing-lg) * 1.5);
-    margin-bottom: calc(var(--spacing-lg) * 2);
+    min-height: calc(100vh - var(--spacing-md) * 2.5);
+    position: relative;
+    z-index: 1;
 }
 
 .about-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    width: 100%;
+    margin-top: calc(var(--spacing-md) * 3);
+    position: relative;
+    background-color: var(--color-primary);
+    z-index: 1;
 }
 
 .about-image {
-    width: 200px;
-    height: 350px;
+    width: 150px;
+    height: 250px;
     object-fit: cover;
     object-position: 40% 30%;
-    margin: calc(var(--spacing-lg) * 2) var(--spacing-md) var(--spacing-md) 0;
+    margin: 0 auto var(--spacing-md);
     box-shadow: var(--shadow-large);
     clip-path: polygon(0 5%, 95% 0, 100% 95%, 5% 100%);
 }
 
 .about-text {
     color: var(--color-text);
-    font-size: var(--font-size-base);
-    line-height: 1.6;
-    max-width: 800px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    width: 100%;
+    padding: 0 var(--spacing-xs);
 }
 
 .about-text h1 {
-    font-size: var(--font-size-large);
-    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-sm);
     font-weight: var(--font-weight-thin);
 }
 
 .about-text h2 {
-    font-size: calc(var(--font-size-large) * 0.8);
-    margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
-    font-weight: var(--font-weight-thin);
-}
-
-.about-text h3 {
-    font-size: calc(var(--font-size-large) * 0.6);
+    font-size: 1.4rem;
     margin: var(--spacing-md) 0 var(--spacing-xs) 0;
     font-weight: var(--font-weight-thin);
 }
 
+.about-text h3 {
+    font-size: 1.2rem;
+    margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
+    font-weight: var(--font-weight-thin);
+}
+
 .about-text p {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .about-text ul {
     list-style-type: disc;
-    margin-left: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    margin-left: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
 }
 
 .about-text li {
     margin-bottom: var(--spacing-xs);
 }
 
-.contact-list {
+.about-text .contact-list {
     list-style-type: none !important;
     margin-left: 0 !important;
 }
 
-.contact-list li {
+.about-text .contact-list li {
     margin-bottom: var(--spacing-xs);
 }
 
-.contact-list a {
+.about-text .contact-list a {
     color: var(--color-sun-1);
     text-decoration: none;
     transition: color var(--transition-standard);
 }
 
-.contact-list a:hover {
+.about-text .contact-list a:hover {
     color: var(--color-sun-2);
 }
 
 .about-page main {
     min-height: 100vh;
     position: relative;
-    padding-bottom: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
 }
 
 .about-page footer {
     position: relative;
+    width: 100%;
+    padding: var(--spacing-xs);
     margin-top: auto;
-    bottom: 0;
-    width: 100%;
-    padding: var(--spacing-xs);
 }
 
-/* Footer */
-footer {
-    color: var(--color-text);
-    font-size: var(--font-size-small);
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: var(--spacing-xs);
-}
-
-/* Move these styles up, just before the media queries */
-.home-link {
-    color: var(--color-sun-1);
-    font-weight: var(--font-weight-thin);
-    font-size: var(--font-size-small);
-    letter-spacing: var(--letter-spacing-small);
-    margin-top: 1rem;
-    text-align: center;
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity var(--transition-standard);
-}
-
-.home-link:hover {
-    opacity: 1;
-    color: var(--color-sun-2);
-}
-
-/* Mobile-specific styles */
-@media (max-width: 767px) {
-    .pfigma-title {
-        font-size: 1.5rem;
-        margin-top: calc(var(--spacing-lg) * 1.5);
-        position: relative;
-        z-index: 2;
-    }
-
-    .pfigma-description {
-        font-size: 0.9rem;
-        margin-top: var(--spacing-md);
-        margin-bottom: var(--spacing-lg);
-        position: relative;
-        z-index: 2;
-    }
-
-    .lightbox {
-        position: absolute;  /* Changed from fixed */
-        height: 90vh;
-        max-height: 500px;
-        top: 75%;  /* Moved down */
-        transform: translate(-50%, -40%);
-        z-index: 1;
-        overflow-y: auto;
-    }
-
-    main {
-        min-height: 100vh;
-        position: relative;
-        overflow-y: auto;
-    }
-
-    .carousel {
-        flex: 0 0 auto;
-        height: 300px;
-        margin-bottom: var(--spacing-sm);
-        display: flex;
-        align-items: center;
-    }
-
-    .image-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 300px;
-        margin: 0;
-        padding: 0;
-    }
-
-    .image-container img {
-        max-height: 300px;
-        width: auto;
-        object-fit: contain;
-        margin: 0;
-        padding: 0;
-    }
-
-    .lightbox-text {
-        flex: 1 1 auto;
-        margin: 0;
-        padding: 0;
-    }
-
-    .arrow {
-        top: 30%;
-    }
-
-    .arrow.left {
-        left: 5px;
-    }
-
-    .arrow.right {
-        right: 5px;
-    }
-}
-
-/* iPhone 14 Pro specific styles */
-@media (min-width: 390px) and (max-width: 395px) and (min-height: 650px) and (max-height: 850px) {
-    .pfigma-title {
-        font-size: 1.5rem;
-        margin-top: calc(var(--spacing-lg) * 1.5);
-        position: relative;
-        z-index: 2;
-    }
-
-    .pfigma-description {
-        font-size: 0.9rem;
-        margin-top: var(--spacing-md);
-        margin-bottom: var(--spacing-lg);
-        position: relative;
-        z-index: 2;
-    }
-
-    .lightbox {
-        position: absolute;
-        height: 90vh;
-        max-height: 500px;
-        top: 75%;
-        transform: translate(-50%, -40%);
-        z-index: 1;
-        overflow-y: auto;
-    }
-
-    main {
-        min-height: 100vh;
-        position: relative;
-        overflow-y: auto;
-    }
-
-    .carousel {
-        flex: 0 0 auto;
-        height: 300px;
-        margin-bottom: var(--spacing-sm);
-        display: flex;
-        align-items: center;
-    }
-
-    .image-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 300px;
-        margin: 0;
-        padding: 0;
-    }
-
-    .image-container img {
-        max-height: 300px;
-        width: auto;
-        object-fit: contain;
-        margin: 0;
-        padding: 0;
-    }
-
-    .lightbox-text {
-        flex: 1 1 auto;
-        margin: 0;
-        padding: 0;
-    }
-
-    .arrow {
-        top: 30%;
-    }
-
-    .arrow.left {
-        left: 5px;
-    }
-
-    .arrow.right {
-        right: 5px;
-    }
-}
-
-/* Laptop-specific styles */
-@media (min-width: 1280px) and (max-width: 1366px) and (max-height: 600px) {
-    .lightbox {
-        max-width: 900px !important;
-        height: 400px !important;
-        top: 50% !important;
-        transform: translate(-50%, -45%) !important;
-    }
-
-    .carousel {
-        width: 45% !important;
-        height: 90% !important;
-    }
-
-    .lightbox-text {
-        width: 55% !important;
-        max-height: 100% !important;
-    }
-
-    .pfigma-title {
-        font-size: 1.75rem !important;
-        margin-top: calc(var(--spacing-lg) * 0.5) !important;
-    }
-    
-    .pfigma-description {
-        font-size: 0.8rem !important;
-        margin-bottom: var(--spacing-md) !important;
-    }
-}
-
-/* Rest of media queries in ascending order */
-@media (min-width: 576px) {
-    .lightbox {
-        width: calc(100% - 10%);
-        max-width: 500px;
-        height: 550px;
-        top: 50%;
-        transform: translate(-50%, -40%);
-    }
-
-    .arrow.left {
-        left: -30px;
-    }
-
-    .arrow.right {
-        right: -30px;
-    }
-
-    .pfigma-title {
-        font-size: 2rem;
-        margin-top: calc(var(--spacing-lg) * 1.5);
-    }
-
-    .pfigma-description {
-        font-size: 1.25rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .lightbox {
-        width: calc(100% - 15%);
-        max-width: 768px;
-        height: 600px;
-        top: 50%;
-        transform: translate(-50%, -42%);
-    }
-
-    .lightbox-instruction {
-        font-size: var(--font-size-base);
-    }
-    
-    .carousel {
-        padding-bottom: calc(var(--spacing-md) + 0.5rem);
-    }
-
-    .arrow-indicator {
-        width: 25px;
-        height: 25px;
-    }
-
-    .arrow.left {
-        left: -50px;
-    }
-
-    .arrow.right {
-        right: -50px;
-    }
-
+/* ==========================================================================
+   Tablet Styles (768px and up)
+   ========================================================================== */
+@media screen and (min-width: 768px) {
     .home-title {
-        font-size: var(--font-size-xlarge);
+        color: var(--color-text);
+        font-weight: var(--font-weight-thin);
+        font-size: calc(1rem + 5vw);  /* Even lower base, even higher viewport scaling */
         letter-spacing: var(--letter-spacing-medium);
-        transform: translateY(100px);
+        text-align: center;
+        white-space: nowrap;
+        transform: translateY(calc(11vh + 2vw));
     }
 
     .home-subtitle {
-        font-size: var(--font-size-medium);
-        letter-spacing: var(--letter-spacing-small);
-        margin-top: -2.8rem;
+        font-size: calc(0.7rem + 1.5vw);  /* Even lower base, higher viewport scaling */
+        letter-spacing: var(--letter-spacing-medium);
+        transform: translateY(-6vh);
+        margin-top: 0;
     }
 
     .home-tagline {
-        font-size: var(--font-size-base);
-        letter-spacing: var(--letter-spacing-small);
-        margin-top: 6rem;
-    }
-
-    #image-description {
-        font-size: var(--font-size-base);
-    }
-
-    .image-container {
-        width: 95%;      
-        height: 85%;     
-    }
-
-    .pfigma-title {
-        font-size: 2.5rem;
-        margin-top: calc(var(--spacing-lg) * 2);
-    }
-    
-    .pfigma-description {
-        font-size: 1.5rem;
+        font-size: calc(0.7rem + 1.5vw);  /* Match subtitle */
+        letter-spacing: var(--letter-spacing-medium);
+        white-space: nowrap;
+        margin-top: 3rem;
     }
 
     .home-link {
-        font-size: var(--font-size-base);
-        letter-spacing: var(--letter-spacing-small);
+        font-size: calc(0.7rem + 1vw);  /* Base size plus viewport scaling */
+        letter-spacing: var(--letter-spacing-medium);
+        margin-top: 1rem;
+        font-weight: 400;  /* Make text bolder for tablets */
     }
 
-    .about-content {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: var(--spacing-md);
-        padding-left: var(--spacing-lg);
+    .menu-text {
+        font-size: calc(0.8rem + 1.5vw);  /* Increased viewport scaling */
     }
 
-    .about-image {
-        width: 250px;
-        height: 450px;
-        margin-top: calc(var(--spacing-xl) * 2);
-        object-position: 40% 30%;
+    .hamburger, .hamburger::before, .hamburger::after {
+        height: calc(3px + 0.3vw);  /* Slightly increased scaling */
+        width: calc(25px + 1.5vw);  /* Increased scaling to match text */
+    }
+
+    .nav a {
+        font-size: calc(1rem + 1.2vw);  /* Scale menu items with viewport */
+        padding: calc(var(--spacing-xs) + 0.5vw) calc(var(--spacing-md) + 1vw);  /* Scale padding too */
+    }
+
+    .pfigma-title {
+        margin-top: 4.5rem;
+        font-size: calc(1.2rem + 1.5vw);
+    }
+
+    .pfigma-description {
+        font-size: calc(0.9rem + 0.8vw);
+        margin-top: 1rem;
+    }
+
+    .lightbox {
+        top: 16rem;
+        height: calc(95vh - 18rem);  /* Changed to 95vh */
+        max-height: none;
+        min-height: 500px;
     }
 }
 
-@media (min-width: 992px) {
-    .lightbox {
-        flex-direction: row;
-        padding: calc(var(--spacing-md) + 0.5rem);
-        width: 85%;
-        max-width: 1000px;
-        height: 785px;
-        top: 52%;
-        transform: translate(-50%, -45%);
-        gap: var(--spacing-md);
-        justify-content: flex-start;
-    }
-
-    .lightbox-instruction {
-        top: auto;
-        bottom: 0.625rem;
-        margin-bottom: 0;
-    }
-
-    .carousel {
-        width: auto;
-        min-width: 45%;
-        max-width: 55%;
-        padding-right: 0;
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    .image-container {
-        width: auto;
-        height: 90%;
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    .lightbox-text {
-        flex: 1;
-        min-width: 40%;
-        padding: 0 var(--spacing-xs);
-        overflow-y: auto;
-        max-height: 100%;
-    }
-
-    .arrow-indicator {
-        width: 30px;
-        height: 30px;
-    }
-
-    .arrow.left {
-        left: -75px;
-    }
-
-    .arrow.right {
-        right: -75px;
-    }
-
+/* ==========================================================================
+   Desktop Styles (1024px and up)
+   ========================================================================== */
+@media screen and (min-width: 1024px) {
     .home-title {
-        font-size: var(--font-size-xlarge);
+        font-size: calc(2rem + 1.5vw);
         letter-spacing: var(--letter-spacing-large);
-        transform: translateY(120px);
+        transform: translateY(calc(14vh + 2vw));
     }
 
     .home-subtitle {
-        font-size: calc(var(--font-size-medium) + 0.3rem);
+        font-size: calc(0.5rem + 0.5vw);
         letter-spacing: var(--letter-spacing-medium);
-        margin-top: -3rem;
+        transform: translateY(-6vh);
     }
 
     .home-tagline {
-        font-size: var(--font-size-medium);
+        font-size: calc(0.5rem + 0.5vw);  /* Match subtitle size */
         letter-spacing: var(--letter-spacing-medium);
-        margin-top: 8rem;
+    }
+
+    .home-link {
+        font-size: calc(0.5rem + 0.4vw);  /* Slightly smaller than tagline */
+        letter-spacing: var(--letter-spacing-small);
     }
 
     .sun-effect {
         width: var(--sun-size-desktop);
         height: var(--sun-size-desktop);
-        max-width: 300px;
-        max-height: 300px;
     }
 
-    .image-container {
-        width: 90%;
-        height: 90%;
+    .menu-text {
+        font-size: calc(0.35rem + 0.35vw);  /* Slightly larger text */
     }
 
-    .pfigma-title {
-        font-size: 3rem;
-        margin-top: calc(var(--spacing-lg) * 0.75);
-    }
-    
-    .pfigma-description {
-        font-size: 1.75rem;
-        margin-bottom: var(--spacing-lg);
+    .hamburger, .hamburger::before, .hamburger::after {
+        height: calc(0.8px + 0.08vw);
+        width: calc(12px + 0.4vw);
     }
 
-    .home-link {
-        font-size: var(--font-size-medium);
-        letter-spacing: var(--letter-spacing-medium);
-    }
-}
-
-@media (min-width: 1092px) {
-    .carousel {
-        min-width: 45%;
-        max-width: 55%;
-        padding-right: 0;
+    .nav a {
+        font-size: calc(0.4rem + 0.4vw);  /* Even smaller nav text */
+        padding: calc(var(--spacing-xs) + 0.3vw) calc(var(--spacing-sm) + 0.5vw);  /* Less right padding */
+        margin-left: -1rem;  /* Move text left */
     }
 
-    .lightbox-text {
-        flex: 1;
-    }
-}
-
-@media (min-width: 1200px) {
     .lightbox {
-        max-width: 1200px;
-    }
-
-    .lightbox-text {
-        width: 45%;
-    }
-
-    .carousel {
-        width: 55%;
-        padding-right: var(--spacing-xl);
+        max-width: var(--lightbox-max-width-desktop);  /* Replace 1400px */
+        width: var(--lightbox-width-desktop);         /* Replace 85% */
+        height: var(--lightbox-height-desktop);       /* Replace 785px */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        position: fixed;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: calc(var(--spacing-md) + 0.5rem);
+        gap: var(--spacing-md);
+        z-index: var(--z-lightbox);
+        background-color: var(--color-accent);
+        border-radius: var(--border-radius-md);  /* Replace 10px */
+        box-shadow: var(--shadow-large);
+        overflow: visible;
     }
 
     .image-container {
         width: auto;
         height: 95%;
+        display: flex;
         justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        margin: 0;
     }
-}
 
-@media (min-width: 1400px) {
-    .lightbox {
-        max-width: 1400px;
+    .image-container img.active {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
     }
-}
 
-@media (min-width: 2560px) {
-    .lightbox {
-        max-width: 1400px;
-        height: 785px;
+    .lightbox-text {
+        width: 45%;
+        flex: 1;
+        min-width: 40%;
+        padding: 0 var(--spacing-xs);
+        overflow-y: auto;
+        max-height: 100%;
+        height: auto;
+        scrollbar-gutter: stable;
     }
-}
 
-/* Move this to the very end */
-@media (min-width: 1920px) and (max-width: 2559px) {
+    .text-content.active {
+        display: block;
+        margin: auto 0;
+    }
+
     .pfigma-title {
-        font-size: 2.25rem;
-        margin-top: calc(var(--spacing-lg) * 0.75);
-    }
-    
-    .pfigma-description {
-        font-size: 1.5rem;
-        margin-bottom: var(--spacing-lg);
+        font-size: var(--font-size-h1);  /* Replace 3rem */
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
     }
 
-    .lightbox {
-        max-width: 1200px;
-        height: 700px;
+    .pfigma-description {
+        font-size: var(--font-size-base);  /* Replace 1rem */
+        margin-top: 0.5rem;
+    }
+
+    .arrow {
+        position: absolute;
         top: 50%;
-        transform: translate(-50%, -45%);
+        transform: translateY(-50%);
+        --arrow-size: 35px;
+        padding: var(--spacing-xs);
+    }
+
+    .arrow-indicator span {
+        border-width: 3px;
+    }
+
+    .arrow.right {
+        right: var(--position-arrow-outside);
+    }
+
+    .arrow.left {
+        left: var(--position-arrow-outside);
+    }
+
+    .lightbox-instruction {
+        position: absolute;
+        top: auto;
+        bottom: var(--spacing-sm);  /* Replace 1rem */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: var(--font-size-small);
+        padding: 2px 8px;
+        border-radius: var(--border-radius-sm);
+        background: none;
+    }
+
+    .about-container {
+        max-width: var(--max-content-width);
+        padding: 0 var(--spacing-xl);
+        margin: 0 auto;
+    }
+
+    .about-content {
+        margin-top: var(--spacing-ultra);  /* Replace 10rem */
+        display: flex;
+        gap: var(--spacing-xxxl);         /* Replace 6rem */
+        align-items: flex-start;
+    }
+
+    .about-image {
+        width: 250px;
+        height: 375px;
+        margin: 0;
+        flex-shrink: 0;
+        margin-top: var(--spacing-md);  /* Replace 2rem */
+    }
+
+    .about-text {
+        flex: 1;
+        font-size: var(--font-size-base);
+        padding: 0;
+        line-height: var(--line-height-large);  /* Replace 1.6 */
+        max-width: 800px
+    }
+
+    .about-text h1 {
+        font-size: var(--font-size-large);
+        margin-bottom: 1.5rem;
+    }
+
+    .about-text h2 {
+        font-size: calc(var(--font-size-large) * 0.8);
+        margin: var(--spacing-md) 0 var(--spacing-sm);  /* Replace 2rem 0 1rem */
+    }
+
+    .about-text h3 {
+        font-size: calc(var(--font-size-large) * 0.6);
     }
 }

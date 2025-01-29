@@ -66,7 +66,7 @@
                     </ul>
                 </div>
                 <div class="text-content" data-index="1">
-                    When transitioning a Figma design into a "mobile-first" web project, clarity and preparation are key. While responsive and flexible layouts are the ultimate goals, understanding the design’s intent and its nuances sets the foundation for success. Here’s how I approach this task systematically, starting with sketching and notations to uncover hidden design details.
+                    When transitioning a Figma design into a "mobile-first" web project, clarity and preparation are key. While responsive and flexible layouts are the ultimate goals, understanding the design's intent and its nuances sets the foundation for success. Here's how I approach this task systematically, starting with sketching and notations to uncover hidden design details.
                     <br>
                     <ul>
                         <li><b>Step 1: Break Down the Overall Structure</b>
@@ -101,42 +101,34 @@
                     </ul>
                 </div>
                 <div class="text-content" data-index="2">
-                    <p>
-                        <b class="highlight-green">Body</b>
-                        <br>
-                        <b class="highlight-green">Header:</b> logo (top left), navigation (top right), background image with a gradient (top to bottom) and text (h1)
-                        <br><br>
-                        For this structure, I used this Emmet shorthand to create it:
-                        <br><br>
-                        <b class="highlight-gold">header>nav>a+ul>li*3^div>h1</b>
-                    </p>
-                    <p>
-                        <b class="highlight-green">Main:</b> there are three distinct sections, two of which I'll definitely use a flexbox to organize
-                    </p>
+                    Breaking down the overall structure of the website:
+                    <br><br>
+                    <b class="highlight-green">Header Section</b>
                     <ul>
-                        <li>Title: text (h2), location (h1), an icon and hours (h2)</li>
-                        <li>Sections: Three images, sub-title (h2, left justified) and text (p, left justified). First and Third text box to the right, the second is to the left.</li>
+                        <li>Logo (top left)</li>
+                        <li>Navigation (top right)</li>
+                        <li>Background image with gradient (top to bottom)</li>
+                        <li>Text (h1)</li>
+                        <li>Emmet: <span class="highlight-gold">header>nav>a+ul>li*3^div>h1</span></li>
+                    </ul>
+
+                    <b class="highlight-green">Main Section</b>
+                    <ul>
+                        <li>Title Area: text (h2), location (h1), icon, hours (h2)</li>
+                        <li>Sections: Three images, sub-title (h2, left justified) and text (p, left justified). First and Third text box to the right, the second is to the left</li>
                         <li>Separator: an icon</li>
                         <li>Menu Images: With a gradient (bottom to top) and text (h2)</li>
+
+                        <li>Emmet: <span class="highlight-gold">main>div.title>div#title-text1>h2^h1+img[src]+div#title-text2>h2^^div.container>section>img[src]+div.section-text>h2+p^^section>img[src]+div.section-text>h2+p^^section>img[src]+div.section-text>h2+p^img[src]^^div.menu-img>div.menu-item.drink-menu>h2.menu-text^div.menu-item.food-menu>h2.menu-text</span></li>
                     </ul>
-                    <p>
-                        Emmet shorthand:
-                        <br>
-                        <b class="highlight-gold">main>div.title>div#title-text1>h2^h1+img[src]+div#title-text2>h2^^div.container>section>img[src]+div.section-text>h2+p^^section>img[src]+div.section-text>h2+p^^section>img[src]+div.section-text>h2+p^img[src]^^div.menu-img>div.menu-item.drink-menu>h2.menu-text^div.menu-item.food-menu>h2.menu-text</b>
-                    </p>
-                    <p>
-                        <b class="highlight-green">Footer:</b> there is also three distinct sections
-                    </p>
+
+                    <b class="highlight-green">Footer Section</b>
                     <ul>
                         <li>Contact (h2): address, phone, email</li>
                         <li>Social media icons/links</li>
-                        <li>Copyright</li>
+                        <li>Copyright text</li>
+                        <li>Emmet: <span class="highlight-gold">footer>div.footer-content>div.contact-info>h2.address+h2.phone+h2.email^div.social-icons>a.icon-placeholder.facebook[title="Like us on Facebook" href="https://facebook.com"]+a.icon-placeholder.twitter[title="Follow us on X" href="https://x.com"]+a.icon-placeholder.instagram[title="Follow us on Instagram" href="https://instagram.com"]^p.copyright</span></li>
                     </ul>
-                    <p>
-                        Emmet shorthand:
-                        <br>
-                        <b class="highlight-gold">footer>div.footer-content>div.contact-info>h2.address+h2.phone+h2.email^div.social-icons>a.icon-placeholder.facebook[title="Like us on Facebook" href="https://facebook.com"]+a.icon-placeholder.twitter[title="Follow us on X" href="https://x.com"]+a.icon-placeholder.instagram[title="Follow us on Instagram" href="https://instagram.com"]^p.copyright</b>
-                    </p>
                 </div>
                 <div class="text-content" data-index="3">
                     <p>For the next step, notating the key differences between Mobile and Desktop views.</p>
